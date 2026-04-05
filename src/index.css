@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #05060F;
+  --color-surface: #0A0C1A;
+  --color-cyan: #00E5FF;
+  --color-gold: #FFB800;
+  --color-red: #FF2D55;
+  --color-green: #00FF87;
+  
+  --font-inter: "Inter", sans-serif;
+  --font-rajdhani: "Rajdhani", sans-serif;
+}
+
+/* Global Themes */
+:root {
+  --theme-primary: var(--color-cyan);
+  --theme-secondary: var(--color-gold);
+  --theme-accent: var(--color-cyan);
+  --theme-glow: 0 0 15px rgba(0, 229, 255, 0.4);
+  --theme-font: var(--font-rajdhani);
+  --theme-border: rgba(0, 229, 255, 0.2);
+  --theme-card-bg: rgba(255, 255, 255, 0.03);
+}
+
+.theme-classic {
+  --theme-primary: #FFFFFF;
+  --theme-secondary: var(--color-gold);
+  --theme-accent: #3B82F6; /* Professional Blue */
+  --theme-glow: none;
+  --theme-font: var(--font-inter);
+  --theme-border: rgba(255, 255, 255, 0.1);
+  --theme-card-bg: rgba(255, 255, 255, 0.05);
+}
+
+.theme-futuristic {
+  --theme-primary: var(--color-cyan);
+  --theme-secondary: var(--color-gold);
+  --theme-accent: var(--color-cyan);
+  --theme-glow: 0 0 20px rgba(0, 229, 255, 0.4);
+  --theme-font: var(--font-rajdhani);
+  --theme-border: rgba(0, 229, 255, 0.2);
+  --theme-card-bg: rgba(255, 255, 255, 0.03);
+}
+
+body {
+  @apply bg-bg text-white antialiased;
+  font-family: var(--theme-font);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.font-theme {
+  font-family: var(--theme-font);
+}
+
+/* Base Utilities */
+@utility glass {
+  @apply backdrop-blur-xl border border-white/5;
+  background: var(--theme-card-bg);
+  border-color: var(--theme-border);
+  box-shadow: var(--theme-glow);
+}
+
+@utility btn-primary {
+  @apply px-8 py-3 rounded-xl font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95;
+  background: var(--theme-primary);
+  color: #000;
+  box-shadow: var(--theme-glow);
+}
+
+@utility btn-gold {
+  @apply px-8 py-3 rounded-xl font-bold uppercase tracking-widest transition-all hover:scale-105 active:scale-95 bg-gold text-black;
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.3);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--theme-glow);
+}
+
+/* Custom effects */
+.text-glow {
+  text-shadow: var(--theme-glow);
+}
+
+/* Existing Custom Utilities from previous session */
+.bar-stream {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: stream 2s infinite linear;
+}
+
+@keyframes stream {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 9999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.scanline {
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 229, 255, 0.03) 50%, transparent 100%);
+  position: fixed;
+  top: -100px;
+  left: 0;
+  z-index: 9999;
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanline {
+  0% { top: -100px; }
+  100% { top: 100%; }
+}
+
+.momentum-bar {
+  @apply h-1.5 w-full bg-black/40 rounded-full overflow-hidden flex;
+}
+
+.momentum-active {
+  @apply h-full transition-all duration-1000;
+  box-shadow: 0 0 10px currentColor;
+}
